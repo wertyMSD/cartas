@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Café Bar Central · Chiclana de la Frontera (maqueta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #dedad3;
+    --paper: #f7f4ee;
+    --ink: #0a0a0a;
+    --muted: #5c5852;
+    --accent: #256f82;
+    --accent-ink: #ffffff;
+    --m: clamp(12px, 3vw, 40px);
+    --s-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+    --s-body: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    --s-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+    --s-head: clamp(2rem, 1.3rem + 3.2vw, 3.5rem);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif; font-size: var(--s-body); line-height: 1.5;
+  }
+  a { color: var(--ink); }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px;
+  }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .wrap { padding: var(--m); }
+
+  /* Portada: la carta es la página */
+  .hero { display: flex; justify-content: center; }
+  .sheet {
+    background: var(--paper); width: min(640px, 100%); padding: clamp(28px, 5vw, 56px);
+    text-align: center;
+  }
+  .kicker { margin: 0 0 6px; font-size: var(--s-small); color: var(--muted); }
+  h1 {
+    margin: 0; font-weight: 400; font-style: italic; letter-spacing: -0.01em; line-height: 1.1;
+    font-size: var(--s-head);
+  }
+  .lede { margin: 18px auto 0; max-width: 36ch; font-size: var(--s-lead); line-height: 1.4; }
+  .actions { margin-top: 28px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-ink); text-decoration: none;
+    padding: 14px 26px; border-radius: 0; font-size: var(--s-body);
+  }
+  .btn:hover { background: var(--ink); }
+  .note { margin-top: 20px; font-size: var(--s-small); color: var(--muted); }
+
+  /* Carta */
+  section { margin-top: clamp(120px, 14vw, 200px); }
+  h2 { margin: 0 0 18px; font-weight: 400; font-size: var(--s-head); line-height: 1.1; }
+  .menu { background: var(--paper); width: min(640px, 100%); margin: 0 auto; padding: clamp(28px, 5vw, 56px); }
+  .menu h3 { margin: 32px 0 10px; font-weight: 500; font-size: 1.35rem; text-align: center; }
+  .menu h3:first-child { margin-top: 0; }
+  .menu ul { list-style: none; margin: 0; padding: 0; }
+  .menu li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 8px 0; font-size: 1.1rem; }
+  .price { font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; font-size: var(--s-small); }
+  .hours { margin-top: 28px; text-align: center; color: var(--muted); font-size: var(--s-small); }
+  .pending { color: var(--muted); font-size: var(--s-small); }
+
+  /* Contacto: cupón */
+  .coupon {
+    background: var(--accent); color: var(--accent-ink); width: min(900px, 100%); margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: clamp(28px, 4vw, 48px);
+  }
+  .coupon h2 { color: var(--accent-ink); font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); text-transform: uppercase; letter-spacing: .02em; }
+  .coupon form { display: grid; gap: 10px; }
+  .coupon input, .coupon textarea {
+    width: 100%; font: inherit; font-size: 1rem; padding: 12px 14px; border: 0; border-radius: 0;
+    background: #ffffff33; color: var(--accent-ink);
+  }
+  .coupon input::placeholder, .coupon textarea::placeholder { color: #ffffffcc; }
+  .coupon button {
+    font: inherit; font-size: 1.05rem; padding: 14px; border: 0; border-radius: 0; cursor: pointer;
+    background: var(--ink); color: #fff;
+  }
+  .coupon .status { font-size: var(--s-small); color: #ffffffcc; min-height: 1.2em; margin: 0; }
+  @media (max-width: 720px) { .coupon { grid-template-columns: 1fr; } }
+
+  /* Pie: reverso de la carta */
+  footer { margin-top: clamp(120px, 14vw, 200px); padding-bottom: 40px; }
+  .back {
+    background: var(--paper); width: min(900px, 100%); margin: 0 auto; padding: clamp(24px, 4vw, 44px);
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px;
+  }
+  .back p { margin: 0 0 8px; }
+  .back .info a { display: block; margin: 6px 0; font-size: var(--s-body); }
+  .imprint { width: min(900px, 100%); margin: 14px auto 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
+  @media (max-width: 720px) { .back { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="sheet">
+      <p class="kicker">Chiclana de la Frontera · calle Joaquín Santos</p>
+      <h1>Churros, porras y un café de barrio</h1>
+      <p class="lede">Café Bar Central. Desayuno y merienda, para llevar o para sentarse.</p>
+      <div class="actions"><a class="btn" href="#carta">Ver la carta</a></div>
+      <p class="note">Maqueta: precios y oferta pendientes de confirmar con el bar.</p>
+    </div>
+  </header>
+
+  <section id="carta" aria-labelledby="carta-titulo">
+    <h2 id="carta-titulo" style="text-align:center">La carta</h2>
+    <div class="menu">
+      <h3>Churrería</h3>
+      <ul>
+        <li><span>Churros con chocolate</span><span class="price">precio a confirmar</span></li>
+        <li><span>Porras con chocolate</span><span class="price">precio a confirmar</span></li>
+        <li><span>Café con leche con porras</span><span class="price">precio a confirmar</span></li>
+      </ul>
+      <h3>Cocina y pastelería</h3>
+      <ul>
+        <li><span>Tapas variadas</span><span class="price">precio a confirmar</span></li>
+        <li><span>Catalana</span><span class="price">precio a confirmar</span></li>
+        <li><span>Pastelería variada</span><span class="price">precio a confirmar</span></li>
+      </ul>
+      <p class="hours">Lunes a viernes 8:00–13:30 · Sábado 8:30–13:30 · Domingo cerrado<br><span class="pending">Horario según directorios: a confirmar con el bar.</span></p>
+    </div>
+  </section>
+
+  <section aria-labelledby="contacto-titulo">
+    <div class="coupon">
+      <div>
+        <h2 id="contacto-titulo">Consultas</h2>
+        <p>Escríbenos y te respondemos. Para grupos, avísanos con antelación.</p>
+      </div>
+      <form id="contacto">
+        <label for="nombre" class="sr">Nombre</label>
+        <input id="nombre" name="nombre" placeholder="Nombre" autocomplete="name" required>
+        <label for="tel" class="sr">Teléfono</label>
+        <input id="tel" name="telefono" placeholder="Teléfono" inputmode="tel" autocomplete="tel">
+        <label for="mensaje" class="sr">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="3" placeholder="Mensaje"></textarea>
+        <button type="submit">Enviar</button>
+        <p class="status" id="estado" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="back">
+    <div>
+      <p>Gracias por venir.</p>
+      <p class="pending">Maqueta: el formulario todavía no envía nada. Se conectará al correo del bar tras confirmarlo.</p>
+    </div>
+    <div class="info">
+      <p>C. Joaquín Santos, 11130 Chiclana de la Frontera (Cádiz)</p>
+      <a href="tel:+34956407339">956 40 73 39</a>
+      <a href="https://www.facebook.com/barcentralchiclana/">Facebook</a>
+    </div>
+  </div>
+  <p class="imprint">Maqueta de carta digital para Café Bar Central.</p>
+</footer>
+
+<script>
+  document.getElementById('contacto').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('estado').textContent = 'Maqueta: el envío aún no está conectado.';
+  });
+</script>
+</body>
+</html>
